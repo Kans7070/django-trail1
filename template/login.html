@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href='https://fonts.googleapis.com/css?family=Ubuntu:500' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="{% static 'login/login.css' %}" type="text/css">
+  <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
+</head>
+<body>
+  <form action="{% url 'login' %}" method="POST" id="login-form">
+    {% csrf_token %}
+    <div class="login">
+    <div class="login-header">
+      <h1>LogIn</h1>
+  </div>
+  <div class="login-form">
+    <div class="inp">
+    <h3>Username:</h3>
+    <input type="text"  placeholder="Username" name="username" />
+    <br>
+  </div>
+    <div class="inp">
+
+      <h3>Password:</h3>
+      <input type="password" placeholder="Password" name="password" />
+    </div>
+    <br>
+    <input type="submit" value="Login" class="login-button"/>
+    <br>
+    {% for x in messages%}
+    <h4 style="color: red;">{{x}}</h4>
+    {% endfor %}
+  </div>
+  
+</div>
+</form>
+<script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+    crossorigin="anonymous"></script>
+    
+    <script>
+        $(document).ready(function(){
+            $("#login-form").validate({
+                rules:{
+                    username: {
+                        required: true,
+                        
+                    },
+                    password: {
+                        required: true,
+                    },
+                }
+            })
+        })
+    </script>
+  
+</body>
+</html>
